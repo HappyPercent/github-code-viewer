@@ -17,7 +17,7 @@ const Blob = ({file, path}: {file: TFileNode; path: string}) => {
   const {onFileSelect} = useContext(SelectedRepoContext);
   return (
     <ListItemButton
-      onClick={() => onFileSelect?.(path)}
+      onClick={() => onFileSelect?.(path + file.name)}
       sx={{
         display: "flex",
         gap: 1,

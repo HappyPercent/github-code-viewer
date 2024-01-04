@@ -8,5 +8,5 @@ export const useGetFileContent = (
 ) =>
   useQuery(getFileContent, {
     variables: {owner, name: repoName, path: "HEAD:" + path},
-    skip: !owner || !repoName || typeof path !== "string",
+    skip: !owner || !repoName || !path,
   });
