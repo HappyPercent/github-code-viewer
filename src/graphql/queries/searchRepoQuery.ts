@@ -9,6 +9,7 @@ export const searchRepoQuery = graphql(`
             name
             owner {
               login
+              avatarUrl
             }
             description
             stargazerCount

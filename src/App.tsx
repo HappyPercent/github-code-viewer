@@ -8,7 +8,12 @@ function App() {
   const [selectedRepo, setSelectedRepo] = useState<TRepoNode | null>(null);
 
   return (
-    <Container maxWidth="lg">
+    <Container
+      maxWidth="lg"
+      sx={{
+        paddingTop: 2,
+      }}
+    >
       <Stack direction="column" gap={3}>
         <SearchRepo onSelect={setSelectedRepo} />
         <CodeView selectedRepo={selectedRepo} />

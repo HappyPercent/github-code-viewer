@@ -1,5 +1,5 @@
 import {Box, Grid, Paper} from "@mui/material";
-import React from "react";
+import React, {useEffect} from "react";
 import {TRepoNode} from "../SearchRepo/types";
 import FileTreeView from "./FileTree";
 import {FileView} from "./FileView";
@@ -14,6 +14,10 @@ const CodeView = ({selectedRepo}: {selectedRepo: TRepoNode | null}) => {
   const [selectedFilePath, setSelectedFilePath] = React.useState<string | null>(
     null
   );
+
+  useEffect(() => {
+    setSelectedFilePath(null);
+  }, [selectedRepo]);
 
   return (
     <Box>
@@ -30,6 +34,7 @@ const CodeView = ({selectedRepo}: {selectedRepo: TRepoNode | null}) => {
               elevation={1}
               sx={{
                 overflow: "auto",
+                maxHeight: "calc(100vh - 112px)",
               }}
             >
               <FileTreeView />
@@ -40,6 +45,7 @@ const CodeView = ({selectedRepo}: {selectedRepo: TRepoNode | null}) => {
               elevation={1}
               sx={{
                 overflow: "auto",
+                maxHeight: "calc(100vh - 112px)",
               }}
             >
               <FileView />

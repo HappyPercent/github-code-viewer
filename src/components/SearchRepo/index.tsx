@@ -1,5 +1,11 @@
 import React, {useState} from "react";
-import {TextField, Box, Autocomplete, CircularProgress} from "@mui/material";
+import {
+  TextField,
+  Box,
+  Autocomplete,
+  CircularProgress,
+  Typography,
+} from "@mui/material";
 import {SEARCH_WIDTH} from "./constants";
 import {useSearchRepo} from "src/graphql/requests/useSearchRepo";
 import useDebounce from "src/helpers/useDebounce";
@@ -28,6 +34,31 @@ const SearchRepo = ({onSelect}: {onSelect: (node: TRepoNode) => void}) => {
         }
         onChange={(_, value) => onSelect(value?.node!)}
         loading={loading}
+        renderOption={(props, option) => (
+          <Box
+            component="li"
+            sx={{"& > img": {mr: 2, flexShrink: 0}}}
+            {...props}
+          >
+            {option?.node.name}
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{
+                marginLeft: "auto",
+                marginRight: 2,
+              }}
+            >
+              {option?.node.owner.login}
+            </Typography>
+            <img
+              loading="lazy"
+              width="20"
+              src={option?.node.owner.avatarUrl}
+              alt=""
+            />
+          </Box>
+        )}
         renderInput={(params) => (
           <TextField
             {...params}
