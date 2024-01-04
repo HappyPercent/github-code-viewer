@@ -1,12 +1,12 @@
 import {useQuery} from "@apollo/client";
-import {getRepoFiles} from "../queries/getRepoFilesQuery";
+import {getFileContent} from "../queries/getFileContent";
 
-export const useGetRepoFiles = (
+export const useGetFileContent = (
   owner: string,
   repoName: string,
   path: string | null = ""
 ) =>
-  useQuery(getRepoFiles, {
+  useQuery(getFileContent, {
     variables: {owner, name: repoName, path: "HEAD:" + path},
     skip: !owner || !repoName || typeof path !== "string",
   });

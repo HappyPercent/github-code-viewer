@@ -1,18 +1,18 @@
 import {graphql} from "../__generated__";
 
 export const getRepoFiles = graphql(`
-  query GetRepositoryFiles($owner: String!, $name: String!, $branch: String!) {
+  query GetRepositoryFiles($owner: String!, $name: String!, $path: String) {
     repository(owner: $owner, name: $name) {
-      object(expression: $branch) {
-        ... on Commit {
-          tree {
-            entries {
-              name
-              type
-              object {
-                ... on Blob {
-                  text
-                }
+      object(expression: $path) {
+        ... on Tree {
+          entries {
+            name
+            type
+            mode
+
+            object {
+              ... on Blob {
+                byteSize
               }
             }
           }

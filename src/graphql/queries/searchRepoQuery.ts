@@ -13,6 +13,13 @@ export const searchRepoQuery = graphql(`
             description
             stargazerCount
             url
+            # refs(refPrefix: "refs/heads/", first: 100) {
+            #   edges {
+            #     node {
+            #       name
+            #     }
+            #   }
+            # }
           }
         }
       }
