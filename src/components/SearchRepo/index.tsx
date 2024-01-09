@@ -39,6 +39,7 @@ const SearchRepo = ({onSelect}: {onSelect: (node: TRepoNode) => void}) => {
             component="li"
             sx={{"& > img": {mr: 2, flexShrink: 0}}}
             {...props}
+            key={option?.node.name + " " + option?.node.owner.login}
           >
             {option?.node.name}
             <Typography

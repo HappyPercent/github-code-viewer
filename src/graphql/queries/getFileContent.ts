@@ -5,6 +5,8 @@ export const getFileContent = graphql(`
     repository(owner: $owner, name: $name) {
       object(expression: $path) {
         ... on Blob {
+          commitResourcePath
+          commitUrl
           byteSize
           text
           isBinary

@@ -13,18 +13,30 @@ export const FileView = () => {
 
   if (loading) return <CircularProgress />;
 
-  if (!selectedFilePath) return null;
+  if (!selectedFilePath || data?.repository?.object?.__typename !== "Blob")
+    return null;
+
+  const isBinary = data?.repository?.object?.isBinary;
 
   return (
     <Stack spacing={2} sx={{padding: 2}}>
       <Typography variant="h6">{selectedFilePath}</Typography>
-      <pre>
-        <code>
-          {data?.repository?.object?.__typename === "Blob"
-            ? data?.repository?.object.text
-            : ""}
-        </code>
-      </pre>
+      {isBinary ? (
+        <div>
+          This is binary file,{" "}
+          <a
+            href={`https://raw.githubusercontent.com/${selectedRepo?.owner.login}/${selectedRepo?.name}/HEAD/${selectedFilePath}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            view raw on GitHub
+          </a>
+        </div>
+      ) : (
+        <pre>
+          <code>{data?.repository?.object.text}</code>
+        </pre>
+      )}
     </Stack>
   );
 };

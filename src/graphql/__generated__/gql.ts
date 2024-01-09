@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n": types.GetFileContentDocument,
+    "\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          commitResourcePath\n          commitUrl\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n": types.GetFileContentDocument,
     "\n  query GetRepositoryFiles($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Tree {\n          entries {\n            name\n            type\n            mode\n\n            object {\n              ... on Blob {\n                byteSize\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n": types.GetRepositoryFilesDocument,
     "\n  query SearchRepositories($query: String!) {\n    search(query: $query, type: REPOSITORY, first: 100) {\n      edges {\n        node {\n          ... on Repository {\n            name\n            owner {\n              login\n              avatarUrl\n            }\n            description\n            stargazerCount\n            url\n            # refs(refPrefix: \"refs/heads/\", first: 100) {\n            #   edges {\n            #     node {\n            #       name\n            #     }\n            #   }\n            # }\n          }\n        }\n      }\n    }\n  }\n": types.SearchRepositoriesDocument,
 };
@@ -35,7 +35,7 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          commitResourcePath\n          commitUrl\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetFileContent($owner: String!, $name: String!, $path: String) {\n    repository(owner: $owner, name: $name) {\n      object(expression: $path) {\n        ... on Blob {\n          commitResourcePath\n          commitUrl\n          byteSize\n          text\n          isBinary\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
