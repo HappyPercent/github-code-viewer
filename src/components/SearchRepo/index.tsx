@@ -11,7 +11,7 @@ import {useSearchRepo} from "src/graphql/requests/useSearchRepo";
 import useDebounce from "src/helpers/useDebounce";
 import {TRepoNode, TSingleEdge} from "./types";
 
-const SearchRepo = ({onSelect}: {onSelect: (node: TRepoNode) => void}) => {
+const SearchRepo = ({onSelect}: {onSelect: (node: TRepoNode | null) => void}) => {
   const [repoName, setRepoName] = useState("");
   const search = useDebounce(repoName, 500);
   const {data, loading} = useSearchRepo(search);
@@ -32,7 +32,7 @@ const SearchRepo = ({onSelect}: {onSelect: (node: TRepoNode) => void}) => {
         isOptionEqualToValue={(option, value) =>
           option?.node.name === value?.node.name
         }
-        onChange={(_, value) => onSelect(value?.node!)}
+        onChange={(_, value) => onSelect(value?.node ?? null)}
         loading={loading}
         renderOption={(props, option) => (
           <Box

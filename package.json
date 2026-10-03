@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "github-code-viewer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,8 +25,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "yarn graphql-codegen && react-scripts start",
-    "build": "react-scripts build",
+    "codegen": "graphql-codegen",
+    "start": "npm run codegen && react-scripts start",
+    "build": "npm run codegen && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

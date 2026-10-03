@@ -1,10 +1,26 @@
-# Simple SPA for GitHub repo search and code view.
+# GitHub Code Viewer
 
-### to run locally:
-1. Clone repo, install modules.
-2. Create `.env` in the root directory.
-3. Add `REACT_APP_GITHUB_TOKEN` to `.env` with your GitHub token (don't forget the read access). [How to manage your tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
-4. Run `npm start`.
+Single-page app for searching GitHub repositories and browsing their source in the browser. It uses the GitHub GraphQL API directly, with typed queries generated from the schema.
 
-### GQL schema
-This app uses GQL codegen to generate typings, so to change GQL types you have to update file in `src/graphql/schema` and run `yarn graphql-codegen` or rerun the build.
+React 18 · TypeScript · Apollo Client · GraphQL Code Generator · MUI
+
+## Features
+
+- Debounced repository search with autocomplete
+- Lazy-loaded file tree: folders load on expand
+- File viewer with a link out for binary files
+- End-to-end typed GraphQL (queries, variables and results) via `graphql-codegen`
+
+## Run locally
+
+```bash
+npm install
+cp .env.example .env     # add a GitHub token with public read access
+npm start
+```
+
+The token is read from `REACT_APP_GITHUB_TOKEN` and sent from the browser. That makes this a local demo: don't deploy a build with a real token in it.
+
+## GraphQL types
+
+Queries live in `src/graphql/queries`. `npm start` and `npm run build` regenerate `src/graphql/__generated__` from `src/graphql/schema/schema.docs.graphql`. Run `npm run codegen` to regenerate on its own.
