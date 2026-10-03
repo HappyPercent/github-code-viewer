@@ -1,4 +1,5 @@
 # GitHub Code Viewer
+[![CI](https://github.com/HappyPercent/github-code-viewer/actions/workflows/ci.yml/badge.svg)](https://github.com/HappyPercent/github-code-viewer/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Single-page app for searching GitHub repositories and browsing their source in the browser. It uses the GitHub GraphQL API directly, with typed queries generated from the schema.
 
